@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  deploy:
+    machine:
+      enabled: true
+    working_directory: ~/dashbase-cloudformation-template
+    steps:
+      - checkout
+      - run:
+          name: Copy to S3
+          command: aws s3 cp dashbase-cloudformation-template s3://dashbase-public/
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
