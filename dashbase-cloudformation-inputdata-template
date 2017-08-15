@@ -138,11 +138,17 @@
                                 "Ref": "VolumeType"
                             }
                         }
+                    },
+                    {
+                        "DeviceName": "/dev/sdf",
+                        "Ebs": {
+                            "SnapshotId": "snap-0d8c899828416164b"
+                        }
                     }
                 ],
                 "UserData": {
                     "Fn::Base64": {
-                        "Fn::Sub": "#!/usr/bin/env bash \necho ###BEGIN_USERDATA### \npvcreate /dev/xvdk\nvgcreate vg0 /dev/xvdk\nlvcreate -l 100%FREE -n dashbase vg0\nmkfs.ext4 /dev/vg0/dashbase\nmkdir /mnt/dashbase\necho /dev/mapper/vg0-dashbase /mnt/dashbase ext4 defaults 0 2 >> /etc/fstab\nmount -a\nchown -R ec2-user:ec2-user /mnt/dashbase/\n/opt/aws/bin/cfn-signal -e 0 -r \"Stack setup complete\"\n!Ref WaitHandle \n|+ \n'#EOF'\n"
+                        "Fn::Sub": "#!/usr/bin/env bash \npvcreate /dev/xvdk\nvgcreate vg0 /dev/xvdk\nlvcreate -l 100%FREE -n dashbase vg0\nmkfs.ext4 /dev/vg0/dashbase\nmkdir /mnt/dashbase\nmkdir /data/input\necho /dev/mapper/vg0-dashbase /mnt/dashbase ext4 defaults 0 2 >> /etc/fstab\necho /dev/xvdf/ /data/input ext4 defaults 0 2 >> /etc/fstab\nmount -a\nchown -R ec2-user:ec2-user /mnt/dashbase/\n/opt/aws/bin/cfn-signal -e 0 -r \"Stack setup complete\"\n!Ref WaitHandle \n|+ \n'#EOF'\n"
                     }
                 }
             },

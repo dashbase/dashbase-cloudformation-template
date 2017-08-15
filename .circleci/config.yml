@@ -12,7 +12,9 @@ jobs:
       - checkout
       - run:
           name: Copy to S3 CloudFormation Test
-          command: aws s3 cp dashbase-cloudformation-template s3://dashbase-public/cloudformation-template/test/
+          command: |
+            aws s3 cp dashbase-cloudformation-template s3://dashbase-public/cloudformation-template/test/
+            aws s3 cp dashbase-cloudformation-inputdata-template s3://dashbase-public/cloudformation-template/test/
 
   deploy-master:
     <<: *defaults
@@ -20,7 +22,9 @@ jobs:
       - checkout
       - run:
           name: Copy to S3 CloudFormation
-          command: aws s3 cp dashbase-cloudformation-template s3://dashbase-public/cloudformation-template/
+          command: |
+            aws s3 cp dashbase-cloudformation-template s3://dashbase-public/cloudformation-template/
+            aws s3 cp dashbase-cloudformation-inputdata-template s3://dashbase-public/cloudformation-template/
 
 workflows:
   version: 2
