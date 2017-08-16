@@ -39,7 +39,13 @@
                 "c4.xlarge",
                 "c4.2xlarge",
                 "c4.4xlarge",
-                "c4.8xlarge"
+                "c4.8xlarge",
+                "r4.large",
+                "r4.xlarge",
+                "r4.2xlarge",
+                "r4.4xlarge",
+                "r4.8xlarge",
+                "r4.16xlarge"
             ],
             "ConstraintDescription": "must be a valid EC2 instance type",
             "Default": "m4.large",
