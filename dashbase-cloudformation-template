@@ -48,7 +48,7 @@
                 "r4.16xlarge"
             ],
             "ConstraintDescription": "must be a valid EC2 instance type",
-            "Default": "m4.large",
+            "Default": "r4.xlarge",
             "Description": "Dashbase EC2 instance type",
             "Type": "String"
         },
