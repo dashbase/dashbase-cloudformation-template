@@ -12,14 +12,14 @@ jobs:
       - checkout
       - run:
           name: Copy to S3 CloudFormation Test
-          command: aws s3 sync --exclude="*" --include="dashbase-cloudformation-*" . s3://dashbase-public/cloudformation-template/test/
+          command: aws s3 sync --exclude="*" --include="dashbase-cf-*" . s3://dashbase-public/cloudformation-template/test/
   deploy-master:
     <<: *defaults
     steps:
       - checkout
       - run:
           name: Copy to S3 CloudFormation
-          command: aws s3 sync --exclude="*" --include="dashbase-cloudformation-*" . s3://dashbase-public/cloudformation-template/
+          command: aws s3 sync --exclude="*" --include="dashbase-cf-*" . s3://dashbase-public/cloudformation-template/
 
 workflows:
   version: 2
